@@ -1,7 +1,6 @@
 <?php
 
 namespace mhndev\location;
-use mhndev\location\Exception\InvalidArgument;
 use mhndev\location\Exception\InvalidCredentials;
 use mhndev\location\Exception\NoResult;
 use mhndev\location\Exception\QuotaExceeded;
