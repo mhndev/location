@@ -1,0 +1,28 @@
+{
+  "name": "mhndev/location",
+  "description": "Location",
+  "keywords": ["location"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "majid abdolhosseini",
+      "email": "majid.a@mabna.com",
+      "homepage":"http://mhndev.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "mhndev\\location\\": "src"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "require": {
+    "php": ">=5.4.0",
+    "guzzlehttp/guzzle": "^6.2"
+  },
+  "require-dev":{
+    "raveren/kint": "^1.0"
+  }
+}
