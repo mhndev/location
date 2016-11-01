@@ -117,8 +117,8 @@ class GoogleGeocoder extends aGeocoder implements iGeocoder, iLocaleAware
             rawurlencode($address)
         );
 
-        $query = sprintf('%s&language=%s', $query, $this->getLocale());
 
+        $query = sprintf('%s&language=%s', $query, $this->getLocale());
 
         $response = $this->httpAgent->GET($query);
 

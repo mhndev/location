@@ -13,8 +13,7 @@ $googleClient->setHttpAgent(new \mhndev\location\GuzzleHttpAgent());
 
 $result = $googleClient
     ->setLocale('fa-IR')
-    ->geocode($_GET['query'], 2);
-
+    ->geocode($_GET['query'], 1);
 
 
 echo json_encode(['latitude'=>$result[0]['latitude'], 'longitude'=>$result[0]['longitude'] ]);
