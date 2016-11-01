@@ -32,7 +32,7 @@ class GoogleEstimate implements iEstimate
 
 
 
-    private $api_key = 'AIzaSyAwmVos1B201fS2cR_2ahJ79YS2chfa84Y';
+    private $api_key = 'AIzaSyADitw3_YLb5RwfJTjLlvh5FBy8osBlesY';
 
     const ENDPOINT_URL = 'http://maps.googleapis.com/maps/api/distancematrix/json';
 
@@ -40,6 +40,10 @@ class GoogleEstimate implements iEstimate
     const ENDPOINT_URL_SSL = 'https://maps.googleapis.com/maps/api/distancematrix/json';
 
 
+
+    //https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&key=AIzaSyADitw3_YLb5RwfJTjLlvh5FBy8osBlesY&origin=35.733906,%2051.440589&destinations=35.681783,%2051.483411&departure_time=1478031254&traffic_model=optimistic&language=en-US
+
+    //https://maps.googleapis.com/maps/api/distancematrix/json?origins=35.733906,%2051.440589&destinations=35.681783,%2051.483411&key=AIzaSyAwmVos1B201fS2cR_2ahJ79YS2chfa84Y&traffic_model=pessimistic&departure_time=1478015497
     /**
      * @param $origin
      * @param $destination
@@ -50,7 +54,7 @@ class GoogleEstimate implements iEstimate
      */
     function estimate($origin, $destination, $traffic_model = null, $departure_time = null)
     {
-        $query = 'key='.$this->api_key.'origin='.$origin.'&destination='.$destination;
+        $query = 'units=imperial&key='.$this->api_key.'&origins='.$origin.'&destinations='.$destination;
 
         if($traffic_model && $departure_time == null){
             $departure_time = time();
@@ -60,13 +64,16 @@ class GoogleEstimate implements iEstimate
             $query .= '&departure_time='.$departure_time.'&traffic_model='.$traffic_model;
         }
 
-        $query = self::ENDPOINT_URL.'?'.$query;
+
+        $query = self::ENDPOINT_URL_SSL.'?'.$query;
         $query = sprintf('%s&language=%s', $query, $this->getLocale());
+
+
+
         $response = $this->httpAgent->GET($query);
 
 
-        \Kint::dump($response->getBody()->getContents());
-        die();
+        return json_decode($response->getBody()->getContents(), true);
     }
 
 
