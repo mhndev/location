@@ -58,15 +58,11 @@ class GoogleGeocoder extends aGeocoder implements iGeocoder, iLocaleAware
 
 
     /**
-     * @return iHttpAgent
+     * @param bool $useSsl
      */
-    private function getHttpAgent()
+    public function setUseSsl($useSsl = true)
     {
-        if($this->httpAgent){
-            return $this->httpAgent;
-        }else{
-            echo 'salam';
-        }
+        $this->useSsl = $useSsl;
     }
 
 
@@ -117,9 +113,7 @@ class GoogleGeocoder extends aGeocoder implements iGeocoder, iLocaleAware
             rawurlencode($address)
         );
 
-
         $query = sprintf('%s&language=%s', $query, $this->getLocale());
-
         $response = $this->httpAgent->GET($query);
 
         return $this->getAddressesFromResponse($response->getBody()->getContents(), $depth );

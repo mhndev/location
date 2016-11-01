@@ -1,6 +1,5 @@
 <?php
 
-use Elasticsearch\ClientBuilder;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -9,7 +8,38 @@ error_reporting(E_ALL);
 
 require 'vendor/autoload.php';
 
-echo time();
+
+$estimate_client = new \mhndev\location\GoogleEstimate();
+
+
+$result = $estimate_client->setHttpAgent(new \mhndev\location\GuzzleHttpAgent())->estimate('35.733906,51.440589', '35.681783,51.483411', 'optimistic');
+
+
+
+
+Kint::dump($result);
+die();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 use Elasticsearch\ClientBuilder;
@@ -57,23 +87,23 @@ $fields = ['search'];
   }
   */
 
-$params = [
-    'index' => 'digipeyk',
-    'type' => 'location',
-    'body' => [
-        'query' => [
-            'match' => [
-                'search' => 'میرد'
-            ]
-        ]
-    ]
-];
-
-
-$client = ClientBuilder::create()->build();
-
-$response = $client->search($params);
-Kint::dump($response);
+//$params = [
+//    'index' => 'digipeyk',
+//    'type' => 'location',
+//    'body' => [
+//        'query' => [
+//            'match' => [
+//                'search' => 'میرد'
+//            ]
+//        ]
+//    ]
+//];
+//
+//
+//$client = ClientBuilder::create()->build();
+//
+//$response = $client->search($params);
+//Kint::dump($response);
 
 
 
