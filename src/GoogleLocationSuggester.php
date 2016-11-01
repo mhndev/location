@@ -4,6 +4,10 @@ namespace mhndev\location;
 use mhndev\location\Interfaces\iHttpAgent;
 use mhndev\location\Interfaces\iLocationSuggester;
 
+/**
+ * Class GoogleLocationSuggester
+ * @package mhndev\location
+ */
 class GoogleLocationSuggester implements iLocationSuggester
 {
 

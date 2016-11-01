@@ -20,9 +20,14 @@
   },
   "require": {
     "php": ">=5.4.0",
-    "guzzlehttp/guzzle": "^6.2"
+    "guzzlehttp/guzzle": "^6.2",
+    "elasticsearch/elasticsearch": "~2.0",
+    "phpoffice/phpexcel": "^1.8"
   },
   "require-dev":{
-    "raveren/kint": "^1.0"
+    "raveren/kint": "^1.0",
+    "stichoza/google-translate-php": "^3.2",
+    "akeneo-labs/spreadsheet-parser": "^1.2"
+
   }
 }

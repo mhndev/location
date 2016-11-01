@@ -131,7 +131,7 @@ class GoogleGeocoder extends aGeocoder implements iGeocoder, iLocaleAware
      * @param $depth
      * @return array
      */
-    private function getAddressesFromResponse($content, $depth)
+    private function getAddressesFromResponse($content, $depth = 1)
     {
         if (empty($content)) {
             throw new NoResult;
@@ -277,11 +277,12 @@ class GoogleGeocoder extends aGeocoder implements iGeocoder, iLocaleAware
     /**
      * @param $lat
      * @param $lng
+     * @param $depth
      * @return mixed
      */
-    public function reverse($lat, $lng)
+    public function reverse($lat, $lng, $depth = 1)
     {
-        return $this->geocode(sprintf('%F,%F', $lat, $lng));
+        return $this->geocode(sprintf('%F,%F', $lat, $lng), $depth);
     }
 
 
