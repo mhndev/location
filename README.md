@@ -35,4 +35,14 @@ $result = $google->suggest('پیروزی');
 
 Kint::dump($result);
 
+
+
+$result = \mhndev\location\distance(35.691339, 51.471760, 35.734837, 51.441062);
+
+
+var_dump($result);
+//https://maps.googleapis.com/maps/api/distancematrix/json?origins=35.691339,51.471760&destinations=35.734837,51.441062&key=AIzaSyAwmVos1B201fS2cR_2ahJ79YS2chfa84Y
+//35.691339, 51.471760
+//35.734837, 51.441062
+
 ```
