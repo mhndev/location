@@ -6,7 +6,36 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Methods: OPTIONS, GET, POST ,PUT, DELETE, PATCH");
+header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
+
+
 require 'vendor/autoload.php';
+
+
+
+$file = file_get_contents('data/tehran_squares.json');
+
+$data = json_decode($file, true)['RECORDS'];
+
+$result = [];
+
+foreach ($data as $record){
+    $record['type'] = 'square';
+
+    $result[] = $record;
+}
+
+
+$file = fopen('data/tehran_squares.json','w');
+
+fwrite($file, json_encode([ 'RECORDS'=>$result ] , JSON_UNESCAPED_UNICODE));
+
+
+Kint::dump($data);
+die();
+
 
 
 $estimate_client = new \mhndev\location\GoogleEstimate();
