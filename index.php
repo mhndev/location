@@ -14,7 +14,6 @@ header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 require 'vendor/autoload.php';
 
 
-
 $file = file_get_contents('data/tehran_squares.json');
 
 $data = json_decode($file, true)['RECORDS'];
