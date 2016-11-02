@@ -46,3 +46,24 @@ var_dump($result);
 //35.734837, 51.441062
 
 ```
+
+
+### Service Outputs
+
+```php
+http://localhost:8080/estimate.php?origin=35.733906, 51.440589&destination=35.681783, 51.483411
+```
+
+```php
+http://localhost:8080/reverse.php?lat=35.7542194&lon=51.3547069
+```
+
+
+```php
+http://localhost:8080/geocode.php?query=%D8%B3%D9%87%D8%B1%D9%88%D8%B1%D8%AF%DB%8C
+```
+
+
+```php
+http://localhost:8080/suggest.php?query=mirdamad
+```

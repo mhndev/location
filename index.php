@@ -14,12 +14,7 @@ $estimate_client = new \mhndev\location\GoogleEstimate();
 
 $result = $estimate_client->setHttpAgent(new \mhndev\location\GuzzleHttpAgent())->estimate('35.733906, 51.440589', '35.681783, 51.483411', 'optimistic');
 
-
-
-
-Kint::dump($result);
-die();
-
+echo json_encode($result);
 
 
 

@@ -54,7 +54,7 @@ class GoogleEstimate implements iEstimate
      */
     function estimate($origin, $destination, $traffic_model = null, $departure_time = null)
     {
-        $query = 'units=imperial&key='.$this->api_key.'&origins='.$origin.'&destinations='.$destination;
+        $query = 'key='.$this->api_key.'&origins='.$origin.'&destinations='.$destination;
 
         if($traffic_model && $departure_time == null){
             $departure_time = time();
@@ -73,7 +73,17 @@ class GoogleEstimate implements iEstimate
         $response = $this->httpAgent->GET($query);
 
 
-        return json_decode($response->getBody()->getContents(), true);
+        $result = json_decode($response->getBody()->getContents(), true);
+
+        $return = [
+            'origin' => $result['origin_addresses'][0],
+            'destination' => $result['destination_addresses'][0],
+            'distance' => $result['rows'][0]['elements'][0]['distance']['text'],
+            'duration' => $result['rows'][0]['elements'][0]['duration']['text'],
+            'duration_in_traffic' => $result['rows'][0]['elements'][0]['duration_in_traffic']['text']
+        ];
+
+        return $return;
     }
 
 
