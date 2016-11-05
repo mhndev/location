@@ -27,14 +27,23 @@ function getResponse($list){
 
 $fields = ['search'];
 
+//
+//"filtered": {
+//    "query": {
+//        "multi_match": {
+//            "query": "my dog has fleas",
+//          "fields": ["name", "keywords"]
+//        }
+//      },
 
+$fields = ['search'];
 $params = [
     'index' => 'digipeyk',
     'type' => 'location',
     'body' => [
         'query' => [
             'match' => [
-                'slug' => '*'.$_GET['query'].'*'
+                'search' => '*'.$_GET['query'].'*'
             ]
         ]
     ]
