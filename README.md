@@ -65,5 +65,5 @@ http://localhost:8080/geocode.php?query=%D8%B3%D9%87%D8%B1%D9%88%D8%B1%D8%AF%DB%
 
 
 ```php
-http://localhost:8080/suggest.php?query=mirdamad
+http://localhost:8080/suggest.php?query=mirdamad&page=2&perPage=11
 ```
