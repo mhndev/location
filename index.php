@@ -18,15 +18,15 @@ $objPHPExcel = PHPExcel_IOFactory::load('locations.xlsx');
 
 
 
-$centers = $objPHPExcel->getSheet(0)->toArray();
+/*$centers = $objPHPExcel->getSheet(0)->toArray();
 $res = parseCenters($centers, $tr);
 $text = json_encode($res, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE );
 $file = fopen('centers.json','w');
-fwrite($file, $text);
+fwrite($file, $text);*/
 
 
 
-$intersections = $objPHPExcel->getSheet(1)->toArray();
+/*$intersections = $objPHPExcel->getSheet(1)->toArray();
 $res = parseIntersections($intersections, $tr);
 $text = json_encode($res, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE );
 $file = fopen('intersections.json','w');
@@ -37,10 +37,10 @@ $sources = $objPHPExcel->getSheet(2)->toArray();
 $res = parseSources($sources, $tr);
 $text = json_encode($res, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE );
 $file = fopen('sources.json','w');
-fwrite($file, $text);
+fwrite($file, $text);*/
 
 
-
+/*
 $embassies = $objPHPExcel->getSheet(3)->toArray();
 $res = parseEmbassies($embassies, $tr);
 $text = json_encode($res, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE );
@@ -59,7 +59,7 @@ $hospitals = $objPHPExcel->getSheet(5)->toArray();
 $res = parseSquares($hospitals, $tr);
 $text = json_encode($res, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE );
 $file = fopen('hospitals.json','w');
-fwrite($file, $text);
+fwrite($file, $text);*/
 
 
 $malls = $objPHPExcel->getSheet(6)->toArray();
@@ -416,7 +416,7 @@ function parseEmbassies($embassies, $translator)
                     'lat'  => explode(',', $embassies[$i][2])[0],
                     'lon' => explode(',', $embassies[$i][2])[1]
                 ],
-                'search' => implode(',', $names)
+                'search' => createMallsSearchString($names)
             ];
         }
 
@@ -512,9 +512,6 @@ function parseMalls($malls, $translator)
         if(!empty($malls[$i][1]) && !empty($malls[$i][2]) ){
 
             $names = explodeAndTrimAndTranslate('-', $malls[$i][1], $translator);
-
-            var_dump($names);
-            die();
 
             $results[] = [
                 'type' => 'mall',
