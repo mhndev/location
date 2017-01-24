@@ -1,6 +1,7 @@
 <?php
 
 namespace mhndev\location;
+use GuzzleHttp\RequestOptions;
 use mhndev\location\Exception\InvalidCredentials;
 use mhndev\location\Exception\NoResult;
 use mhndev\location\Exception\QuotaExceeded;
@@ -37,12 +38,17 @@ class GoogleGeocoder extends aGeocoder implements iGeocoder, iLocaleAware
     /**
      * @var string
      */
-    const ENDPOINT_URL = 'http://maps.googleapis.com/maps/api/geocode/json?address=%s';
+    const ENDPOINT_URL = 'http://172.217.16.202/maps/api/geocode/json?address=%s';
+
+    const ENDPOINT_URL_DOMAIN = 'http://maps.googleapis.com/maps/api/geocode/json?address=%s';
 
     /**
      * @var string
      */
-    const ENDPOINT_URL_SSL = 'https://maps.googleapis.com/maps/api/geocode/json?address=%s';
+    const ENDPOINT_URL_SSL = 'https://172.217.16.202/maps/api/geocode/json?address=%s';
+
+
+    const ENDPOINT_URL_SSL_DOMAIN = 'https://maps.googleapis.com/maps/api/geocode/json?address=%s';
 
 
     /**
@@ -114,6 +120,7 @@ class GoogleGeocoder extends aGeocoder implements iGeocoder, iLocaleAware
         );
 
         $query = sprintf('%s&language=%s', $query, $this->getLocale());
+
         $response = $this->httpAgent->GET($query);
 
         return $this->getAddressesFromResponse($response->getBody()->getContents(), $depth );

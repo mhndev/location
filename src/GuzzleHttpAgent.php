@@ -16,10 +16,11 @@ class GuzzleHttpAgent implements iHttpAgent
 
     /**
      * GuzzleHttpAgent constructor.
+     * @param array $options
      */
-    public function __construct()
+    public function __construct(array $options = [])
     {
-        $this->bridge = new Client();
+        $this->bridge = new Client($options);
     }
 
 
