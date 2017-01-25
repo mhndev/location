@@ -34,10 +34,15 @@ class GoogleEstimate implements iEstimate
 
     private $api_key = 'AIzaSyADitw3_YLb5RwfJTjLlvh5FBy8osBlesY';
 
+    //const ENDPOINT_URL = 'http://172.217.16.202/maps/api/distancematrix/json';
+
     const ENDPOINT_URL = 'http://maps.googleapis.com/maps/api/distancematrix/json';
 
+    const ENDPOINT_DOMAIN_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json';
 
     const ENDPOINT_URL_SSL = 'https://maps.googleapis.com/maps/api/distancematrix/json';
+
+    const ENDPOINT_DOMAIN_URL_SSL = 'https://maps.googleapis.com/maps/api/distancematrix/json';
 
 
 
@@ -68,18 +73,16 @@ class GoogleEstimate implements iEstimate
         $query = self::ENDPOINT_URL_SSL.'?'.$query;
         $query = sprintf('%s&language=%s', $query, $this->getLocale());
 
-
-
         $response = $this->httpAgent->GET($query);
 
 
         $result = json_decode($response->getBody()->getContents(), true);
 
         $return = [
-            'origin' => $result['origin_addresses'][0],
-            'destination' => $result['destination_addresses'][0],
-            'distance' => $result['rows'][0]['elements'][0]['distance']['text'],
-            'duration' => $result['rows'][0]['elements'][0]['duration']['text'],
+            'origin'              => $result['origin_addresses'][0],
+            'destination'         => $result['destination_addresses'][0],
+            'distance'            => $result['rows'][0]['elements'][0]['distance']['text'],
+            'duration'            => $result['rows'][0]['elements'][0]['duration']['text'],
             'duration_in_traffic' => $result['rows'][0]['elements'][0]['duration_in_traffic']['text']
         ];
 
