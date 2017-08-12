@@ -41,7 +41,7 @@ class GoogleLocationSuggester implements iLocationSuggester
     {
         $key = $this->apiKey;
 
-        $result = $this->httpAgent->GET("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=".$key."&radius=20000&location=35.6892,51.3890&input=".$query);
+        $result = $this->httpAgent->GET("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=".$key."&radius=20000&location=35.6892,51.3890&strictbounds&input=".$query);
 
         $addresses = json_decode($result->getBody()->getContents(), true);
 
@@ -49,5 +49,3 @@ class GoogleLocationSuggester implements iLocationSuggester
     }
 
 }
-
-

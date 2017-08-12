@@ -121,6 +121,8 @@ class GoogleGeocoder extends aGeocoder implements iGeocoder, iLocaleAware
 
         $query = sprintf('%s&language=%s', $query, $this->getLocale());
 
+        $query.='&bounds=35.760713,51.639547|35.597320,51.124276';
+
         $response = $this->httpAgent->GET($query);
 
         return $this->getAddressesFromResponse($response->getBody()->getContents(), $depth );
